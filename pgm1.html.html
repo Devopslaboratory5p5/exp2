@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Event Registration</h2>
+
+    <form id="registrationForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+        <label for="event">Select Event</label>
+        <select id="event" required>
+            <option value="">-- Choose an Event --</option>
+            <option value="Tech Conference">Tech Conference</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Networking Meetup">Networking Meetup</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <div id="message"></div>
+</div>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let selectedEvent = document.getElementById("event").value;
+
+        if (name === "" || email === "" || phone === "" || selectedEvent === "") {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        document.getElementById("message").innerHTML =
+            `✅ Thank you, <b>${name}</b>! You have successfully registered for <b>${selectedEvent}</b>.`;
+
+        document.getElementById("registrationForm").reset();
+    });
+</script>
+
+</body>
+</html>
